@@ -8,7 +8,7 @@ export ZSH="/home/bilal/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="norm"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -99,3 +99,22 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Includes antlr4 runtime
+export CLASSPATH="/usr/local/lib/antlr-4.7.2-complete.jar:$CLASSPATH"
+# Includes opencsv for csv io
+export CLASSPATH="/usr/local/lib/opencsv-3.8.jar:$CLASSPATH"
+# Includes apache commons io package
+export CLASSPATH="/usr/local/lib/commons-io-2.6.jar:$CLASSPATH"
+# Includes eclipse jgit and its dependecy
+export CLASSPATH="/usr/local/lib/org.eclipse.jgit-5.6.0.201912101111-r.jar:$CLASSPATH"
+export CLASSPATH="/usr/local/lib/bcprov-jdk15on-1.64.jar:$CLASSPATH"
+
+# Includes SL4J for Java Logging
+export CLASSPATH="/usr/local/lib/slf4j-api-1.6.1.jar:$CLASSPATH"
+export CLASSPATH="/usr/local/lib/slf4j-simple-1.6.1.jar:$CLASSPATH"
+
+#Set default browser
+export BROWSER="/usr/bin/firefox"
+#Setting intellij root to path
+#export PATH="$PATH:/home/bilal/intelliJ/bin"
+export PATH="$PATH:/usr/share/intellij/bin"

@@ -1,0 +1,71 @@
+{
+    "border": "none",
+    "current_border_width": 1,
+    "floating": "user_off",
+    "geometry": {
+       "height": 650,
+       "width": 500,
+       "x": 0,
+       "y": 0
+    },
+    "name": "Pomodoro",
+    "percent": 0.5,
+    "swallows": [
+       {
+        "class": "^Gnome\\-pomodoro$",
+        "instance": "^gnome\\-pomodoro$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "none",
+            "current_border_width": 1,
+            "floating": "user_off",
+            "geometry": {
+               "height": 720,
+               "width": 664,
+               "x": 2056,
+               "y": 12
+            },
+            "name": "Kochi",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Org\\.gnome\\.clocks$",
+                "instance": "^org\\.gnome\\.clocks$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "user_off",
+            "geometry": {
+               "height": 390,
+               "width": 670,
+               "x": 0,
+               "y": 0
+            },
+            "name": "bilal@manjaro-i3: ~",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Gnome\\-terminal$",
+                "instance": "^gnome\\-terminal\\-server$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
