@@ -17,6 +17,7 @@ if vim.g.neovide == true then
   vim.g.neovide_cursor_antialiasing = true
   vim.g.neovide_cursor_animate_in_insert_mode = true
   vim.g.neovide_cursor_animate_command_line = true
+  vim.g.neovide_scale_factor = 0.9
 
   -- Helper function for transparency formatting
   local alpha = function()
