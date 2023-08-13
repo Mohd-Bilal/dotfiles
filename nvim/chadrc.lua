@@ -10,11 +10,10 @@ M.ui = {
 		-- round and block will work for minimal theme only
 		separator_style = "arrow",
 		overriden_modules = function()
-			local st_modules = require("nvchad_ui.statusline.default")
 			return {
 				LSP_Diagnostics = function()
 					if not rawget(vim, "lsp") then
-						return "%#St_lspError# 󰅚 0 %#St_lspWarning# 0"
+						return ""
 					end
 
 					local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -31,6 +30,7 @@ M.ui = {
 
 					return vim.o.columns > 140 and errors .. warnings .. hints .. info or ""
 				end,
+
 			}
 		end,
 	},
