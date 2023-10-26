@@ -3,7 +3,7 @@
 local M = {}
 
 M.ui = {
-	theme = "everblush",
+	theme = "rosepine",
 	statusline = {
 		theme = "default", -- default/vscode/vscode_colored/minimal
 		-- default/round/block/arrow separators work only for default statusline theme
@@ -30,7 +30,6 @@ M.ui = {
 
 					return vim.o.columns > 140 and errors .. warnings .. hints .. info or ""
 				end,
-
 			}
 		end,
 	},
@@ -47,5 +46,6 @@ M.mappings = require("custom.mappings")
 
 require("custom.configs.neovide")
 require("custom.configs.options")
+require("custom.configs.fold")
 
 return M
