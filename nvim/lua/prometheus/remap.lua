@@ -1,8 +1,6 @@
--- n, v, i, t = mode names
+local termcodes = require("prometheus.utils").termcodes
 
-local function termcodes(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
+vim.g.mapleader = " "
 
 local M = {}
 
@@ -37,9 +35,6 @@ M.general = {
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
-
-    -- update nvchad
-    ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
 
     ["<leader>tt"] = {
       function()
@@ -77,61 +72,9 @@ M.general = {
   },
 }
 
-M.tabufline = {
-  plugin = true,
 
-  n = {
-    -- cycle through buffers
-    ["<TAB>"] = {
-      function()
-        require("nvchad.tabufline").tabuflineNext()
-      end,
-      "goto next buffer",
-    },
-
-    ["<S-Tab>"] = {
-      function()
-        require("nvchad.tabufline").tabuflinePrev()
-      end,
-      "goto prev buffer",
-    },
-
-    -- pick buffers via numbers
-    ["<Bslash>"] = { "<cmd> TbufPick <CR>", "Pick buffer" },
-
-    -- close buffer + hide terminal buffer
-    ["<leader>bd"] = {
-      function()
-        require("nvchad.tabufline").close_buffer()
-      end,
-      "close buffer",
-    },
-  },
-}
-
-M.comment = {
-  plugin = true,
-
-  -- toggle comment in both modes
-  n = {
-    ["<leader>/"] = {
-      function()
-        require("Comment.api").toggle.linewise.current()
-      end,
-      "toggle comment",
-    },
-  },
-
-  v = {
-    ["<leader>/"] = {
-      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-      "toggle comment",
-    },
-  },
-}
 
 M.lspconfig = {
-  plugin = true,
 
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
@@ -258,8 +201,6 @@ M.lspconfig = {
 }
 
 M.nvimtree = {
-  plugin = true,
-
   n = {
     -- toggle
     ["<leader>et"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
@@ -270,7 +211,6 @@ M.nvimtree = {
 }
 
 M.telescope = {
-  plugin = true,
 
   n = {
     -- find
@@ -295,84 +235,15 @@ M.telescope = {
     ["<leader>tc"] = { "<cmd> Telescope pickers <CR>", "Recent Searches" },
     -- Resume search
     ["<leader>tr"] = { "<cmd> Telescope resume <CR>", "Resume search" },
-    -- Current Buffer Fuzzy
-    ["/"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Fuzzy search in current buffer" },
 
     -- Current Buffer Fuzzy
     ["<leader>tl"] = { "<cmd> Telescope lsp_document_symbols  <CR>", "Search lsp symbols" },
   },
 }
 
-M.nvterm = {
-  plugin = true,
 
-  t = {
-    -- toggle in terminal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "toggle floating term",
-    },
-
-    ["<leader>zh"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "toggle horizontal term",
-    },
-
-    ["<leader>zv"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "toggle vertical term",
-    },
-  },
-
-  n = {
-    -- toggle in normal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "toggle floating term",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "toggle vertical term",
-    },
-
-    -- new
-
-    ["<leader>h"] = {
-      function()
-        require("nvterm.terminal").new "horizontal"
-      end,
-      "new horizontal term",
-    },
-
-    ["<leader>v"] = {
-      function()
-        require("nvterm.terminal").new "vertical"
-      end,
-      "new vertical term",
-    },
-  },
-}
 
 M.whichkey = {
-  plugin = true,
 
   n = {
     ["<leader>wK"] = {
@@ -391,30 +262,7 @@ M.whichkey = {
   },
 }
 
-M.blankline = {
-  plugin = true,
-
-  n = {
-    ["<leader>cc"] = {
-      function()
-        local ok, start = require("indent_blankline.utils").get_current_context(
-          vim.g.indent_blankline_context_patterns,
-          vim.g.indent_blankline_use_treesitter_scope
-        )
-
-        if ok then
-          vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start, 0 })
-          vim.cmd [[normal! _]]
-        end
-      end,
-
-      "Jump to current_context",
-    },
-  },
-}
-
 M.gitsigns = {
-  plugin = true,
 
   n = {
     -- Navigation through hunks
@@ -477,74 +325,21 @@ M.gitsigns = {
   },
 }
 
-M.gitclient = {
-  plugin = false,
+
+M.tabline = {
   n = {
-    ["<leader>gt"] = {
+    ["<S-Tab>"] = { "<Plug>(cokeline-focus-prev)" },
+    ["<Tab>"] = { "<Plug>(cokeline-focus-next)" },
+    ["<leader>bf"] = { "<Plug>(cokeline-pick-focus)" },
+    ["<leader>bx"] = { "<Plug>(cokeline-pick-close)" },
+    ["<leader>x"] = {
       function()
-        require("custom.configs.gitui").git_client_toggle()
-      end,
-    },
-  },
+        require('cokeline.mappings').by_step("close", 0)
+      end
+    }
+  }
 }
 
-M.cmdline = {
-  n = {
-    [":"] = { "<cmd>FineCmdline<CR>", "Floating command line", opts = { noremap = true, nowait = true } },
-  },
-}
 
-M.todocomments = {
-  n = {
-    ["<leader>ft"] = { "<cmd>TodoTelescope<CR>", "Telescope viewer for todo", opts = { noremap = true, nowait = true } },
-  },
-}
-
--- M.nvimdap = {
---   plugin = false,
---   n = {
---     ["<leader>db"] = {
---       function()
---         require("dap").toggle_breakpoint()
---       end,
---       "Toggle debugger breakpoint",
---     },
---     ["<leader>dc"] = {
---       function()
---         require("dap").continue()
---       end,
---       "Continue debugger",
---     },
---     ["<leader>ds"] = {
---       function()
---         require("dap").step_over()
---       end,
---       "Step over breakpoint",
---     },
---     ["<leader>di"] = {
---       function()
---         require("dap").step_into()
---       end,
---       "Step into breakpoint",
---     },
---     ["<leader>da"] = {
---       function()
---         require("dap").repl.open()
---       end,
---       "Inspect state",
---     },
---   },
--- }
-
--- M.dapui = {
---   plugin = false,
---   n = {
---     ["<leader>dt"] = {
---       function()
---         require("dapui").toggle()
---       end,
---     },
---   },
--- }
 
 return M

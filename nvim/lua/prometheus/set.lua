@@ -1,5 +1,44 @@
+vim.opt.guicursor = ""
+
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+vim.opt.wrap = false
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.termguicolors = true
+
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+
+vim.opt.updatetime = 250
+
+vim.opt.clipboard = "unnamedplus"
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 if vim.g.neovide == true then
-  vim.o.guifont = "FiraCode Nerd Font:h14,SauceCodePro Nerd Font:h14" -- text below applies for VimScript
+  vim.o.guifont = "FiraCode Nerd Font:h14,SauceCodePro Nerd Font:h14"   -- text below applies for VimScript
   vim.api.nvim_set_keymap(
     "n",
     "<C-a>",
@@ -25,6 +64,7 @@ if vim.g.neovide == true then
   end
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
   -- vim.g.neovide_transparency = 0
-  vim.g.transparency = 0.75
-  -- vim.g.neovide_background_color = "#0f1117" .. alpha()
+  -- vim.g.transparency = 0.75
+  -- vim.g.neovide_background_color = "#2f1117" .. alpha()
 end
+
