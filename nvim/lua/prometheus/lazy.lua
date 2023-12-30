@@ -17,7 +17,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     'nvim-telescope/telescope.nvim',
-    dependencies = { { 'nvim-lua/plenary.nvim' } }
+    dependencies = { { 'nvim-lua/plenary.nvim' } },
+    config = function()
+      require("prometheus.config.telescope")
+    end
   },
   {
     'rose-pine/neovim',
@@ -29,8 +32,7 @@ require("lazy").setup({
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
+      require("prometheus.config.treesitter")
     end
   },
   { "nvim-treesitter/nvim-treesitter-context" },
@@ -51,16 +53,28 @@ require("lazy").setup({
       { 'hrsh7th/cmp-nvim-lua' },
 
       -- Snippets
-      { 'L3MON4D3/LuaSnip' },
+      {
+        'L3MON4D3/LuaSnip',
+        build = "make install_jsregexp"
+      },
       { 'rafamadriz/friendly-snippets' },
-    }
+    },
+    config = function()
+      require("prometheus.config.lsp")
+      require("prometheus.config.cmp")
+    end
   },
-  { "laytan/cloak.nvim" },
+  {
+    "laytan/cloak.nvim",
+    config = function()
+      require("prometheus.config.cloak")
+    end
+  },
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("nvim-tree").setup()
+      require("prometheus.config.nvim-tree")
     end
   },
   {
@@ -71,12 +85,8 @@ require("lazy").setup({
       "stevearc/resession.nvim"       -- Optional, for persistent history
     },
     config = function()
-      require("prometheus.tabline")
+      require("prometheus.config.tabline")
     end
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp"
   },
   {
     'windwp/nvim-autopairs',
@@ -88,35 +98,22 @@ require("lazy").setup({
   },
   {
     "themercorp/themer.lua",
-  },
-  {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    event = "BufEnter",
     config = function()
-      require('ts_context_commentstring').setup {
-        enable_autocmd = false,
-      }
+      require("prometheus.config.themer")
     end
   },
   {
     'numToStr/Comment.nvim',
     event = "BufEnter",
     config = function()
-      require('Comment').setup(
-        {
-          pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-        }
-      )
+      require('Comment').setup()
     end,
-    dependencies = {
-      'JoosepAlviste/nvim-ts-context-commentstring'
-    }
   },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require("prometheus.statusline")
+      require("prometheus.config.statusline")
     end
   }
 

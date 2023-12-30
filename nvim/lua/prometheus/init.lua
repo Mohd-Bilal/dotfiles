@@ -39,6 +39,6 @@ autocmd({ "ColorScheme" }, {
   group = theme_group,
   pattern = "*",
   callback = function()
-    require("prometheus.tabline")
+    require("prometheus.config.tabline")
   end,
 })
