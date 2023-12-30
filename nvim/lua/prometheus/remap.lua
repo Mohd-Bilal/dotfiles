@@ -123,7 +123,7 @@ M.lspconfig = {
 
     ["<leader>ra"] = {
       function()
-        require("nvchad.renamer").open()
+        vim.lsp.buf.rename()
       end,
       "lsp rename",
     },
@@ -339,6 +339,7 @@ M.tabline = {
     }
   }
 }
+
 
 
 
