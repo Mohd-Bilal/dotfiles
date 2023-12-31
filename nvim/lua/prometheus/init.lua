@@ -13,32 +13,32 @@ local yank_group = augroup('HighlightYank', {})
 local theme_group = augroup('ThemeChange', {})
 
 function R(name)
-  require("plenary.reload").reload_module(name)
+   require("plenary.reload").reload_module(name)
 end
 
 utils.load_mappings(mappings)
 
 autocmd('TextYankPost', {
-  group = yank_group,
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank({
-      higroup = 'IncSearch',
-      timeout = 40,
-    })
-  end,
+   group = yank_group,
+   pattern = '*',
+   callback = function()
+      vim.highlight.on_yank({
+         higroup = 'IncSearch',
+         timeout = 40,
+      })
+   end,
 })
 
 autocmd({ "BufWritePre" }, {
-  group = prometheus_group,
-  pattern = "*",
-  command = [[%s/\s\+$//e]],
+   group = prometheus_group,
+   pattern = "*",
+   command = [[%s/\s\+$//e]],
 })
 
 autocmd({ "ColorScheme" }, {
-  group = theme_group,
-  pattern = "*",
-  callback = function()
-    require("prometheus.config.tabline")
-  end,
+   group = theme_group,
+   pattern = "*",
+   callback = function()
+      require("prometheus.config.tabline")
+   end,
 })
