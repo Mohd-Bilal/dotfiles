@@ -343,8 +343,6 @@ M.tabline = {
 M.markdown_preview = {
    n = {
       ["<leader>mp"] = { "<cmd>MarkdownPreview <CR>", "Preview markdown file" },
-      ["<leader>mt"] = { "<cmd>MarkdownPreviewToggle <CR>", "Toggle markdown preview" },
-      ["<leader>ms"] = { "<cmd>MarkdownPreviewStop <CR>", "Stop markdown preview" }
    }
 }
 
