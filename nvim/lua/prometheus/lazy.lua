@@ -23,13 +23,6 @@ require("lazy").setup({
       end
    },
    {
-      'rose-pine/neovim',
-      as = 'rose-pine',
-      config = function()
-         vim.cmd('colorscheme rose-pine')
-      end
-   },
-   {
       'nvim-treesitter/nvim-treesitter',
       config = function()
          require("prometheus.config.treesitter")
