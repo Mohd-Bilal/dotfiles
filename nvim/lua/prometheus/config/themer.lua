@@ -1,2 +1,2 @@
 require("themer").setup()
-vim.cmd("colorscheme themer_darknight")
+vim.cmd("colorscheme themer_onedark")

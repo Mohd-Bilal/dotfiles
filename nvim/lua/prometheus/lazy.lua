@@ -114,6 +114,12 @@ require("lazy").setup({
       config = function()
          require("prometheus.config.markdown-previewer")
       end
+   },
+   {
+      'APZelos/blamer.nvim',
+      config = function ()
+        require("prometheus.config.blamer")
+      end
    }
 
 })
