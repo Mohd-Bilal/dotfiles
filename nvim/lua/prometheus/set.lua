@@ -38,7 +38,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 if vim.g.neovide == true then
-  vim.o.guifont = "FiraCode Nerd Font:h14,SauceCodePro Nerd Font:h14"   -- text below applies for VimScript
+  vim.o.guifont = "FiraCode Nerd Font:h14,SauceCodePro Nerd Font:h14" -- text below applies for VimScript
   vim.api.nvim_set_keymap(
     "n",
     "<C-a>",
@@ -68,3 +68,4 @@ if vim.g.neovide == true then
   -- vim.g.neovide_background_color = "#2f1117" .. alpha()
 end
 
+vim.opt.wrap = true
