@@ -12,6 +12,7 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'buffer' },
+    { name = 'nvim_lsp_signature_help' },
   },
   mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp_action.luasnip_supertab(),

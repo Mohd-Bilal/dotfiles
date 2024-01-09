@@ -1,5 +1,5 @@
 if vim.g.neovide == true then
-   vim.o.guifont = "FiraCode Nerd Font:h14,SauceCodePro Nerd Font:h14" -- text below applies for VimScript
+   vim.o.guifont = "FiraCode Nerd Font Mono:h14,JetBrains Mono:h14" -- text below applies for VimScript
    vim.api.nvim_set_keymap(
       "n",
       "<C-a>",
