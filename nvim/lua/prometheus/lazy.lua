@@ -8,7 +8,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",   -- latest stable release
+    "--branch=stable", -- latest stable release
     lazypath,
   })
 end
@@ -74,9 +74,9 @@ require("lazy").setup({
   {
     "willothy/nvim-cokeline",
     dependencies = {
-      "nvim-lua/plenary.nvim",           -- Required for v0.4.0+
-      "kyazdani42/nvim-web-devicons",    -- If you want devicons
-      "stevearc/resession.nvim"          -- Optional, for persistent history
+      "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+      "kyazdani42/nvim-web-devicons", -- If you want devicons
+      "stevearc/resession.nvim"       -- Optional, for persistent history
     },
     config = function()
       require("prometheus.config.tabline")
@@ -85,7 +85,7 @@ require("lazy").setup({
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
-    opts = {}   -- this is equalent to setup({}) function
+    opts = {} -- this is equalent to setup({}) function
   },
   {
     "onsails/lspkind.nvim"
@@ -120,6 +120,17 @@ require("lazy").setup({
     'APZelos/blamer.nvim',
     config = function()
       require("prometheus.config.blamer")
+    end
+  },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    config = function()
+      require("prometheus.config.barbecue")
     end
   }
 
