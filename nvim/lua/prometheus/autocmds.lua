@@ -17,12 +17,6 @@ autocmd('TextYankPost', {
    end,
 })
 
-autocmd({ "BufWritePre" }, {
-   group = prometheus_group,
-   pattern = "*",
-   command = [[%s/\s\+$//e]],
-})
-
 -- Reload tabline when theme changes
 autocmd({ "ColorScheme" }, {
    group = theme_group,
