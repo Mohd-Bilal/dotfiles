@@ -1,3 +1,4 @@
+require('java').setup()
 local lsp = require('lsp-zero').preset({})
 
 lsp.set_sign_icons({
@@ -25,7 +26,8 @@ require('mason-lspconfig').setup({
     "rust_analyzer",
     "vimls",
     "yamlls",
-    "lua_ls"
+    "lua_ls",
+    "jdtls"
   },
   handlers = {
     lsp.default_setup,
