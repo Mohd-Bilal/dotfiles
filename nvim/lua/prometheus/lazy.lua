@@ -28,7 +28,12 @@ require("lazy").setup({
       require("prometheus.config.treesitter")
     end
   },
-  { "nvim-treesitter/nvim-treesitter-context" },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = function()
+      require("prometheus.config.treesitter-context")
+    end
+  },
   {
     'VonHeikemen/lsp-zero.nvim',
     dependencies = {
