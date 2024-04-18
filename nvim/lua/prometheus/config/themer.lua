@@ -1,3 +1,3 @@
 require("themer").setup()
-vim.cmd("colorscheme themer_catppuccin")
+vim.cmd("colorscheme themer_tokyodark")
 

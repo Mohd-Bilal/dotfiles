@@ -326,27 +326,5 @@ M.gitsigns = {
 }
 
 
-M.tabline = {
-   n = {
-      ["<S-Tab>"] = { "<Plug>(cokeline-focus-prev)" },
-      ["<Tab>"] = { "<Plug>(cokeline-focus-next)" },
-      ["<leader>bf"] = { "<Plug>(cokeline-pick-focus)" },
-      ["<leader>bx"] = { "<Plug>(cokeline-pick-close)" },
-      ["<leader>x"] = {
-         function()
-            require('cokeline.mappings').by_step("close", 0)
-         end
-      }
-   }
-}
-
-M.markdown_preview = {
-   n = {
-      ["<leader>mp"] = { "<cmd>MarkdownPreview <CR>", "Preview markdown file" },
-   }
-}
-
-
-
 
 return M

@@ -35,33 +35,33 @@ require("lazy").setup({
     end
   },
   {
-    'VonHeikemen/lsp-zero.nvim',
+    'neovim/nvim-lspconfig',
     dependencies = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-buffer' },
-      { 'hrsh7th/cmp-path' },
-      { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'hrsh7th/cmp-nvim-lua' },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
-
-      -- Snippets
-      {
-        'L3MON4D3/LuaSnip',
-        build = "make install_jsregexp"
-      },
-      { 'rafamadriz/friendly-snippets' },
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/nvim-cmp",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+      "j-hui/fidget.nvim",
     },
     config = function()
       require("prometheus.config.lsp")
-      require("prometheus.config.cmp")
     end
+  },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+      require("prometheus.config.snippet")
+    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
@@ -71,23 +71,9 @@ require("lazy").setup({
     end
   },
   {
-    "willothy/nvim-cokeline",
-    dependencies = {
-      "nvim-lua/plenary.nvim",       -- Required for v0.4.0+
-      "nvim-tree/nvim-web-devicons", -- If you want devicons
-      "stevearc/resession.nvim"      -- Optional, for persistent history
-    },
-    config = function()
-      require("prometheus.config.tabline")
-    end
-  },
-  {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {} -- this is equalent to setup({}) function
-  },
-  {
-    "onsails/lspkind.nvim"
   },
   {
     "themercorp/themer.lua",
@@ -107,12 +93,6 @@ require("lazy").setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require("prometheus.config.statusline")
-    end
-  },
-  {
-    'davidgranstrom/nvim-markdown-preview',
-    config = function()
-      require("prometheus.config.markdown-previewer")
     end
   },
   {

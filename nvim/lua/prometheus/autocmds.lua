@@ -16,11 +16,3 @@ autocmd('TextYankPost', {
    end,
 })
 
--- Reload tabline when theme changes
-autocmd({ "ColorScheme" }, {
-   group = theme_group,
-   pattern = "*",
-   callback = function()
-      require("prometheus.config.tabline")
-   end,
-})
