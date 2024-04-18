@@ -14,9 +14,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+local plugins = {
   {
     'nvim-telescope/telescope.nvim',
+    lazy = false,
     dependencies = { { 'nvim-lua/plenary.nvim' } },
     config = function()
       require("prometheus.config.telescope")
@@ -24,12 +25,14 @@ require("lazy").setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    lazy = false,
     config = function()
       require("prometheus.config.treesitter")
     end
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    lazy = false,
     config = function()
       require("prometheus.config.treesitter-context")
     end
@@ -48,6 +51,7 @@ require("lazy").setup({
       "saadparwaiz1/cmp_luasnip",
       "j-hui/fidget.nvim",
     },
+    event = "InsertEnter",
     config = function()
       require("prometheus.config.lsp")
     end
@@ -65,6 +69,7 @@ require("lazy").setup({
   },
   {
     "nvim-tree/nvim-tree.lua",
+    lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("prometheus.config.nvim-tree")
@@ -77,6 +82,7 @@ require("lazy").setup({
   },
   {
     "themercorp/themer.lua",
+    lazy = false,
     config = function()
       require("prometheus.config.themer")
     end
@@ -90,6 +96,7 @@ require("lazy").setup({
   },
   {
     'nvim-lualine/lualine.nvim',
+    lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require("prometheus.config.statusline")
@@ -104,6 +111,7 @@ require("lazy").setup({
   {
     "utilyre/barbecue.nvim",
     name = "barbecue",
+    event = "BufEnter",
     dependencies = {
       "SmiteshP/nvim-navic",
       "nvim-tree/nvim-web-devicons", -- optional dependency
@@ -114,18 +122,19 @@ require("lazy").setup({
   },
   {
     "folke/todo-comments.nvim",
+    event = "BufEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
   },
   {
     'nvim-java/nvim-java',
+    module = false,
     dependencies = {
       'nvim-java/lua-async-await',
       'nvim-java/nvim-java-core',
       'nvim-java/nvim-java-test',
       'nvim-java/nvim-java-dap',
       'MunifTanjim/nui.nvim',
-      'neovim/nvim-lspconfig',
       'mfussenegger/nvim-dap',
       {
         'williamboman/mason.nvim',
@@ -137,7 +146,33 @@ require("lazy").setup({
         },
       }
     },
-    ft = "java"
+    event = "BufEnter *.java",
+    config = function()
+      require("prometheus.config.lsp-java")
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config       = function()
+      require("prometheus.config.trouble")
+    end
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "BufEnter",
+    config = function()
+      require("prometheus.config.gitsigns")
+    end
   }
 
-})
+}
+
+local opts = {
+  defaults = {
+    lazy = true,                           -- should plugins be lazy-loaded?
+  }
+}
+
+require("lazy").setup(plugins, opts)
