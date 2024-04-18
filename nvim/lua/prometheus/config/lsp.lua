@@ -6,16 +6,24 @@ local capabilities = vim.tbl_deep_extend(
   vim.lsp.protocol.make_client_capabilities(),
   cmp_lsp.default_capabilities())
 
-require("fidget").setup({})
+require("fidget").setup({
+  notification = {
+    window = {
+      align = "top",
+      border = "rounded"
+    }
+  }
+})
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "rust_analyzer",
     "gopls",
+    "pylsp"
   },
   handlers = {
-    function(server_name)             -- default handler (optional)
+    function(server_name) -- default handler (optional)
       require("lspconfig")[server_name].setup {
         capabilities = capabilities
       }
@@ -43,7 +51,7 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)               -- For `luasnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
   mapping = cmp.mapping.preset.insert({
@@ -54,7 +62,7 @@ cmp.setup({
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },             -- For luasnip users.
+    { name = 'luasnip' }, -- For luasnip users.
   }, {
     { name = 'buffer' },
   })

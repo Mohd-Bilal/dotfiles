@@ -104,6 +104,7 @@ local plugins = {
   },
   {
     'APZelos/blamer.nvim',
+    event = "BufEnter",
     config = function()
       require("prometheus.config.blamer")
     end
