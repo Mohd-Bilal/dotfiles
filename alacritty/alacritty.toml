@@ -1,7 +1,7 @@
-import = ["/home/bilal/.config/alacritty/themes/themes/tokyo-night.yaml"]
+import = ["/home/bilal/.config/alacritty/themes/tokyo-night.toml"]
 
 [font]
-size = 8.0
+size = 11.0
 
 [font.bold]
 family = "SpaceMono Nerd Font Mono"
