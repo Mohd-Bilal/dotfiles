@@ -51,7 +51,7 @@ local plugins = {
       "saadparwaiz1/cmp_luasnip",
       "j-hui/fidget.nvim",
     },
-    event = "InsertEnter",
+    event = "BufEnter",
     config = function()
       require("prometheus.config.lsp")
     end
