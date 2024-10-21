@@ -34,5 +34,5 @@ x = 10
 y = 10
 
 [shell]
-program = "/usr/bin/tmux"
+program = "tmux"
 args = ["-u"]

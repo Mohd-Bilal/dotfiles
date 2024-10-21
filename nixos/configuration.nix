@@ -9,12 +9,12 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-   
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  nixpkgs.config.allowUnfree = true; 
-  networking.hostName = "atlas"; # Define your hostname.
+
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -77,44 +77,55 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+   
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.defaultUserShell = pkgs.zsh;
   users.users.bilal = {
     isNormalUser = true;
     description = "bilal";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    	git
-	gcc13
-	discord
-	fzf
-	python3
+    #  thunderbird
     ];
   };
 
-
-  # Optional, hint electron apps to use wayland:
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Install neovim
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
+  programs = {
+  	firefox = {
+		enable = true;
+	};
+	neovim = {
+		enable = true;
+		defaultEditor = true;
+	};
+	git = {
+		enable = true;
+	};
+	zsh = {
+		enable = true;
+	};
   };
-
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
-  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    # nvim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    pkgs.gnumake
+    pkgs.typescript
+    pkgs.glib
+    pkgs.gcc
+    pkgs.tmux
+    pkgs.ripgrep
+    pkgs.fzf
+    pkgs.python312
+    pkgs.go
+    pop-launcher
+    alacritty
+    tmux
+  ];
 
- environment.systemPackages = with pkgs; [
-   gnomeExtensions.pop-shell
-   alacritty
-   tmux
- ];
-
- environment.gnome.excludePackages = with pkgs; [
+   environment.gnome.excludePackages = with pkgs; [
     gedit       # text editor
     simple-scan # document scanner
     yelp        # help viewer
@@ -125,6 +136,12 @@
     gnome.gnome-clocks
     gnome.gnome-contacts
     gnome.gnome-maps gnome.gnome-music
+  ];
+
+  environment.extraOutputsToInstall = [ "dev" ];
+
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "SpaceMono" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
