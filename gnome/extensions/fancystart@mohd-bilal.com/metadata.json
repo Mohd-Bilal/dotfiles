@@ -1,0 +1,8 @@
+{
+  "name": "Fancy Start Menu",
+  "description": "A menu whose button has an icon",
+  "uuid": "fancystart@mohd-bilal.com",
+  "shell-version": [
+    "46"
+  ]
+}

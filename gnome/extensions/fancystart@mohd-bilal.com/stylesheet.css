@@ -1,0 +1,32 @@
+/* Add your custom extension styling here */
+#panelActivities .panel-button:active, 
+#panelActivities .panel-button:overview,
+#panelActivities .panel-button:focus,
+#panelActivities .panel-button:checked {
+   box-shadow: inset 0 0 0 100px rgba(242, 242, 242, 0.2);
+
+/*background-color: #8c7feb;*/
+
+background-color: #b299d1;
+
+/*background-color: #b299d1;*/
+
+/*color: #8c7feb;*/
+
+color: #131313;
+
+/*background-color: rgba(163, 153, 235, 1);*/
+
+}
+
+ #panelActivities .panel-button:hover {
+
+box-shadow: inset 0 0 0 100px rgba(242, 242, 242, 0.15);
+
+background-color: #a399eb;
+
+color: #131313;
+
+/*box-shadow: inset 0 0 0 100px rgba(183, 176, 235, 0.15);*/
+
+}
