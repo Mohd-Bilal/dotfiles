@@ -50,9 +50,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  hardware.opengl = {
+  hardware.graphics = {
   	enable = true;
-  	driSupport32Bit = true;	
+  	enable32Bit = true;	
     extraPackages = [
       pkgs.rocmPackages.clr
     ];
@@ -85,8 +85,8 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
     videoDrivers = ["amdgpu"];
   };
 
