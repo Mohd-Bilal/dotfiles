@@ -9,14 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  nixpkgs = {
-   config = {
-   allowUnfree = true;
-   packageOverrides = pkgs: {
-      unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
-   };
-  };
-  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -44,7 +37,7 @@
        environmentVariables = {
      		HSA_OVERRIDE_GFX_VERSION = "10.3.0";
    	   };
-       package = pkgs.unstable.ollama;
+       package = pkgs.ollama;
   };
 
   networking.hostName = "atlas"; # Define your hostname.
@@ -59,7 +52,6 @@
 
   hardware.opengl = {
   	enable = true;
-  	driSupport = true;
   	driSupport32Bit = true;	
     extraPackages = [
       pkgs.rocmPackages.clr
@@ -177,7 +169,7 @@
     pkgs.fzf
     pkgs.python312
     pkgs.go
-    pkgs.gnome.gnome-tweaks
+    pkgs.gnome-tweaks
     pkgs.podman-desktop
     pkgs.podman-tui
     pkgs.podman-compose
@@ -187,27 +179,26 @@
     pkgs.rocmPackages.clr
     poetry
     python311Packages.python-lsp-server
-    obsidian
-    pkgs.unstable.zed-editor
+    pkgs.zed-editor
   ];
 
    environment.gnome.excludePackages = with pkgs; [
     gedit       # text editor
     simple-scan # document scanner
     yelp        # help viewer
-    gnome.geary # email client
-    gnome.gnome-terminal
+    geary # email client
+    gnome-terminal
     # these should be self explanatory
-    gnome.gnome-calendar
-    gnome.gnome-clocks
-    gnome.gnome-contacts
-    gnome.gnome-maps gnome.gnome-music
+    gnome-calendar
+    gnome-clocks
   ];
 
   environment.extraOutputsToInstall = [ "dev" ];
 
   fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "SpaceMono" ]; })
+    pkgs.nerd-fonts.fira-code
+    pkgs.nerd-fonts.droid-sans-mono
+    pkgs.nerd-fonts.space-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
