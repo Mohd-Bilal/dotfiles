@@ -9,12 +9,45 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
+  nixpkgs = {
+   config = {
+   allowUnfree = true;
+   packageOverrides = pkgs: {
+      unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {};
+   };
+  };
+  };
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.kernelModules = ["amdgpu"];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  systemd.tmpfiles.rules = 
+  let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [
+        rocblas
+        hipblas
+        clr
+      ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  ];
+
+  services.ollama = {
+       enable = true;
+       acceleration = "rocm";
+       environmentVariables = {
+     		HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+   	   };
+       package = pkgs.unstable.ollama;
+  };
+
+  networking.hostName = "atlas"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -23,6 +56,15 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  hardware.opengl = {
+  	enable = true;
+  	driSupport = true;
+  	driSupport32Bit = true;	
+    extraPackages = [
+      pkgs.rocmPackages.clr
+    ];
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -53,6 +95,7 @@
   services.xserver = {
     layout = "us";
     xkbVariant = "";
+    videoDrivers = ["amdgpu"];
   };
 
   # Enable CUPS to print documents.
@@ -141,6 +184,11 @@
     pop-launcher
     alacritty
     tmux
+    pkgs.rocmPackages.clr
+    poetry
+    python311Packages.python-lsp-server
+    obsidian
+    pkgs.unstable.zed-editor
   ];
 
    environment.gnome.excludePackages = with pkgs; [
