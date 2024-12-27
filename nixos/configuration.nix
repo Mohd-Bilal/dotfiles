@@ -174,12 +174,12 @@
     pkgs.podman-tui
     pkgs.podman-compose
     pop-launcher
-    alacritty
     tmux
     pkgs.rocmPackages.clr
     poetry
     python311Packages.python-lsp-server
     pkgs.zed-editor
+    pkgs.godot_4
   ];
 
    environment.gnome.excludePackages = with pkgs; [
