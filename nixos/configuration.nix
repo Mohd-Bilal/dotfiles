@@ -173,6 +173,7 @@
     pkgs.podman-desktop
     pkgs.podman-tui
     pkgs.podman-compose
+    pkgs.luarocks
     pop-launcher
     tmux
     pkgs.rocmPackages.clr
@@ -180,6 +181,7 @@
     python311Packages.python-lsp-server
     pkgs.zed-editor
     pkgs.godot_4
+    pkgs.mercurial
   ];
 
    environment.gnome.excludePackages = with pkgs; [
