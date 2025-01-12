@@ -193,6 +193,7 @@
     # these should be self explanatory
     gnome-calendar
     gnome-clocks
+    seahorse
   ];
 
   environment.extraOutputsToInstall = [ "dev" ];
@@ -202,6 +203,8 @@
     pkgs.nerd-fonts.droid-sans-mono
     pkgs.nerd-fonts.space-mono
   ];
+
+  programs.ssh.askPassword = "";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
