@@ -17,28 +17,28 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
-  systemd.tmpfiles.rules = 
-  let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        rocblas
-        hipblas
-        clr
-      ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-  ];
+  # systemd.tmpfiles.rules = 
+  # let
+  #   rocmEnv = pkgs.symlinkJoin {
+  #     name = "rocm-combined";
+  #     paths = with pkgs.rocmPackages; [
+  #       rocblas
+  #       hipblas
+  #       clr
+  #     ];
+  #   };
+  # in [
+  #   "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  # ];
 
-  services.ollama = {
-       enable = true;
-       acceleration = "rocm";
-       environmentVariables = {
-     		HSA_OVERRIDE_GFX_VERSION = "10.3.0";
-   	   };
-       package = pkgs.ollama;
-  };
+  # services.ollama = {
+  #      enable = true;
+  #      acceleration = "rocm";
+  #      environmentVariables = {
+  #    		HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+  #  	   };
+  #      package = pkgs.ollama;
+  # };
 
   networking.hostName = "atlas"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -54,7 +54,7 @@
   	enable = true;
   	enable32Bit = true;	
     extraPackages = [
-      pkgs.rocmPackages.clr
+      # pkgs.rocmPackages.clr
     ];
   };
 
@@ -176,12 +176,13 @@
     pkgs.luarocks
     pop-launcher
     tmux
-    pkgs.rocmPackages.clr
+    # pkgs.rocmPackages.clr
     poetry
-    python311Packages.python-lsp-server
     pkgs.zed-editor
     pkgs.godot_4
     pkgs.mercurial
+    pkgs.gimp
+    pkgs.ruff
   ];
 
    environment.gnome.excludePackages = with pkgs; [

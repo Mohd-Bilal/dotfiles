@@ -102,5 +102,3 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 source <(fzf --zsh)
 
 source $ZSH/oh-my-zsh.sh
-
-

@@ -20,7 +20,8 @@ require("mason-lspconfig").setup({
     "lua_ls",
     "rust_analyzer",
     "gopls",
-    "pylsp"
+    "python-lsp-server",
+    "jedi_language_server",
   },
   handlers = {
     function(server_name) -- default handler (optional)
