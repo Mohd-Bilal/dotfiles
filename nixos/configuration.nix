@@ -168,6 +168,7 @@
     pkgs.ripgrep
     pkgs.fzf
     pkgs.python312
+    pkgs.python312Packages.jedi
     pkgs.go
     pkgs.gnome-tweaks
     pkgs.podman-desktop
