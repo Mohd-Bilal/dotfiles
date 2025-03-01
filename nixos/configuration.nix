@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
+  nixpkgs.config.allowUnfree = true;
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -168,7 +168,7 @@
     pkgs.ripgrep
     pkgs.fzf
     pkgs.python312
-    pkgs.python312Packages.jedi
+    pkgs.pylyzer
     pkgs.go
     pkgs.gnome-tweaks
     pkgs.podman-desktop
@@ -184,6 +184,8 @@
     pkgs.mercurial
     pkgs.gimp
     pkgs.ruff
+    pkgs.mongodb-compass
+    pkgs.spotify
   ];
 
    environment.gnome.excludePackages = with pkgs; [

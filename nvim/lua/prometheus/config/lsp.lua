@@ -6,45 +6,33 @@ local capabilities = vim.tbl_deep_extend(
   vim.lsp.protocol.make_client_capabilities(),
   cmp_lsp.default_capabilities())
 
-require("fidget").setup({
-  notification = {
-    window = {
-      align = "top",
-      border = "rounded"
-    }
+  local required_lsps = {
+    "lua_ls",
+    "rust_analyzer",
+    "gopls",
+    "pylyzer",
+    "ruff",
   }
-})
+
 require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "rust_analyzer",
     "gopls",
-    "pylsp"
-  },
-  handlers = {
-    function(server_name) -- default handler (optional)
+  }
+})
+
+
+function configure_lsp(server_name) -- default handler (optional)
       require("lspconfig")[server_name].setup {
         capabilities = capabilities
       }
-    end,
+end
 
-    ["lua_ls"] = function()
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup {
-        capabilities = capabilities,
-        settings = {
-          Lua = {
-            runtime = { version = "Lua 5.1" },
-            diagnostics = {
-              globals = { "vim", "it", "describe", "before_each", "after_each" },
-            }
-          }
-        }
-      }
-    end,
-  }
-})
+for i, lsp in ipairs(required_lsps) do
+  configure_lsp(lsp)
+end
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
