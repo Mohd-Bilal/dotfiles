@@ -1,15 +1,20 @@
 
-
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
-
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-cp /home/bilal/git/dotfiles/zsh-themes/half-life-alpha.zsh-theme /home/bilal/.oh-my-zsh/themes/
+cp $HOME/git/dotfiles/zsh-themes/half-life-alpha.zsh-theme $HOME/.oh-my-zsh/themes/
 
-git clone https://github.com/jeffreytse/zsh-vi-mode  $ZSH_CUSTOM/plugins/zsh-vi-mode
+git clone https://github.com/jeffreytse/zsh-vi-mode  $HOME/.config/tmux/plugins/zsh-vi-mode
 
-ln -s /home/bilal/git/dotfiles/nvim /home/bilal/.config/nvim 
-ln -s /home/bilal/git/dotfiles/tmux /home/bilal/.config/tmux 
-ln -s /home/bilal/git/dotfiles/alacritty /home/bilal/.config/alacritty 
-ln -s /home/bilal/git/dotfiles/.zshrc /home/bilal/.zshrc 
+rm -f $HOME/.config/nvim
+ln -s $HOME/git/dotfiles/nvim $HOME/.config/nvim 
+
+rm -f $HOME/.config/tmux
+ln -s $HOME/git/dotfiles/tmux $HOME/.config/tmux 
+
+rm -f $HOME/.zshrc
+ln -s $HOME/git/dotfiles/.zshrc $HOME/.zshrc 
+
+rm -f $HOME/.config/ghostty
+ln -s $HOME/git/dotfiles/ghostty $HOME/.config/ghostty
