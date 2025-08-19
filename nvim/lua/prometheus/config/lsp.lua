@@ -6,13 +6,14 @@ local capabilities = vim.tbl_deep_extend(
   vim.lsp.protocol.make_client_capabilities(),
   cmp_lsp.default_capabilities())
 
-  local required_lsps = {
-    "lua_ls",
-    "rust_analyzer",
-    "gopls",
-    "pylyzer",
-    "ruff",
-  }
+local required_lsps = {
+  "lua_ls",
+  "rust_analyzer",
+  "gopls",
+  "pylyzer",
+  "ruff",
+  "qmlls"
+}
 
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -25,9 +26,9 @@ require("mason-lspconfig").setup({
 
 
 function configure_lsp(server_name) -- default handler (optional)
-      require("lspconfig")[server_name].setup {
-        capabilities = capabilities
-      }
+  vim.lsp.config (server_name,{
+    capabilities = capabilities
+  })
 end
 
 for i, lsp in ipairs(required_lsps) do
@@ -67,3 +68,4 @@ vim.diagnostic.config({
     prefix = "",
   },
 })
+

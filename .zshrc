@@ -81,7 +81,7 @@ plugins=(git zsh-vi-mode fzf)
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+  export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -98,7 +98,10 @@ plugins=(git zsh-vi-mode fzf)
 
 
 
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-source <(fzf --zsh)
-
 source $ZSH/oh-my-zsh.sh
+
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# source <(fzf --zsh)
+zvm_after_init_commands+=(
+    "source <(fzf --zsh)"
+)

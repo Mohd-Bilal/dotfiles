@@ -44,3 +44,5 @@
 
 command = /bin/zsh
 theme = catppuccin-mocha
+window-decoration = none
+window-padding-x = 10
