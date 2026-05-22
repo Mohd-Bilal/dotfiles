@@ -43,6 +43,5 @@
 # resize-overlay-duration = 4s 200ms
 
 command = /bin/zsh
-theme = catppuccin-mocha
-window-decoration = none
-window-padding-x = 10
+theme = Catppuccin Mocha
+font-family = "Fira Code Medium"

@@ -31,13 +31,6 @@ local plugins = {
     end
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    lazy = false,
-    config = function()
-      require("prometheus.config.treesitter-context")
-    end
-  },
-  {
     'neovim/nvim-lspconfig',
     dependencies = {
       "williamboman/mason.nvim",
