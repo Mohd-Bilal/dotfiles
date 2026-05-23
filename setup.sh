@@ -5,7 +5,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 cp $HOME/git/dotfiles/zsh-themes/half-life-alpha.zsh-theme $HOME/.oh-my-zsh/themes/
 
-git clone https://github.com/jeffreytse/zsh-vi-mode  $HOME/.config/tmux/plugins/zsh-vi-mode
+git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 
 rm -f $HOME/.config/nvim
 ln -s $HOME/git/dotfiles/nvim $HOME/.config/nvim 
