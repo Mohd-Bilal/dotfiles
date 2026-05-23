@@ -25,10 +25,11 @@ require("mason-lspconfig").setup({
 })
 
 
-function configure_lsp(server_name) -- default handler (optional)
-  vim.lsp.config (server_name,{
+function configure_lsp(server_name)
+  vim.lsp.config(server_name, {
     capabilities = capabilities
   })
+  vim.lsp.enable(server_name)
 end
 
 for i, lsp in ipairs(required_lsps) do
