@@ -105,3 +105,15 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 zvm_after_init_commands+=(
     "source <(fzf --zsh)"
 )
+
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
+alias llm="llama-cli -mg 0 -hf ggml-org/gemma-4-12B-it-GGUF:Q4_K_M"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/bilal/.opam/opam-init/init.zsh' ]] || source '/home/bilal/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
