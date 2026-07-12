@@ -1,12 +1,12 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
   },
   lazy = false,
+
   config = function()
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     local servers = {
       lua_ls = {
@@ -24,6 +24,7 @@ return {
           },
         },
       },
+
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
@@ -49,7 +50,23 @@ return {
         },
       },
 
-      ocamllsp = {},
+      ocamllsp = {
+        cmd = { "ocamllsp" },
+        filetypes = {
+          "ocaml",
+          "ocaml.interface",
+          "ocaml.menhir",
+          "ocaml.ocamllex",
+          "dune",
+          "reason",
+        },
+        root_markers = {
+          "dune-project",
+          "dune-workspace",
+          "*.opam",
+          ".git",
+        },
+      },
     }
 
     for name, config in pairs(servers) do
@@ -59,8 +76,43 @@ return {
       vim.lsp.enable(name)
     end
 
-    vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format, {
+    -- Format
+    vim.keymap.set("n", "<leader>fm", function()
+      vim.lsp.buf.format()
+    end, {
       desc = "Format buffer",
+    })
+
+    -- Diagnostics
+    vim.keymap.set("n", "<leader>q", function()
+      vim.diagnostic.setqflist()
+      vim.cmd("copen")
+    end, {
+      desc = "Open diagnostics quickfix list",
+    })
+      -- LSP navigation
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
+      desc = "Go to definition",
+    })
+
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {
+      desc = "Go to declaration",
+    })
+
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, {
+      desc = "Find references",
+    })
+
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {
+      desc = "Go to implementation",
+    })
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, {
+      desc = "Hover documentation",
+    })
+
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
+      desc = "Rename symbol",
     })
   end,
 }

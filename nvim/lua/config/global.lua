@@ -17,7 +17,7 @@ vim.opt.expandtab = true
 
 
 -- keybindings
-vim.keymap.set("n", "<leader>ca", "<cmd>qa!<CR>", { desc = "Force quit all" })
+vim.keymap.set("n", "<leader>cf", "<cmd>qa!<CR>", { desc = "Force quit all" })
 vim.keymap.set("n", "<C-h>", "<C-w>h", {
   desc = "Move to left window",
 })
@@ -33,3 +33,11 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", {
 vim.keymap.set("n", "<C-k>", "<C-w>k", {
   desc = "Move to upper window",
 })
+
+vim.keymap.set("n", "<leader>Q", function()
+  vim.cmd("cclose")
+end)
+
+vim.keymap.set("n", "<leader>t", function()
+  vim.cmd("botright split | terminal")
+end, { desc = "Open terminal" })
