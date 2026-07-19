@@ -117,3 +117,5 @@ alias llm="llama-cli -mg 0 -hf ggml-org/gemma-4-12B-it-GGUF:Q4_K_M"
 # This section can be safely removed at any time if needed.
 [[ ! -r '/home/bilal/.opam/opam-init/init.zsh' ]] || source '/home/bilal/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
 # END opam configuration
+
+export PATH="/home/bilal/.local/bin:$PATH"

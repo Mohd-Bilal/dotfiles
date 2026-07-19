@@ -90,7 +90,7 @@ return {
     end, {
       desc = "Open diagnostics quickfix list",
     })
-      -- LSP navigation
+    -- LSP navigation
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, {
       desc = "Go to definition",
     })
@@ -113,6 +113,9 @@ return {
 
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {
       desc = "Rename symbol",
+    })
+    vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, {
+      desc = "LSP Rename",
     })
   end,
 }
